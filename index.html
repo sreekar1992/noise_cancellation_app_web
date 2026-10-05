@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101419">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <title>ClearVoice — Live noise reduction</title>
+  <script type="module" crossorigin src="./index-CgpkyqK3.js"></script>
+  <link rel="stylesheet" crossorigin href="./index-Rq__R0jZ.css">
+<link rel="manifest" href="./manifest.webmanifest"></head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">◉</span><span>ClearVoice</span></div>
+      <span class="top-caption">LIVE AUDIO STUDIO</span>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="status-dot"></span> REAL-TIME VOICE PROCESSING</div>
+      <h1 id="page-title">Hear the voice.<br><em>Leave the noise.</em></h1>
+      <p>Route a microphone or Bluetooth input to your speakers, shape the sound, and record the cleaned result.</p>
+    </section>
+
+    <nav class="mobile-nav" aria-label="App sections">
+      <button class="mobile-tab active" type="button" data-tab="monitor" aria-current="page">◉ <span>Monitor</span></button>
+      <button class="mobile-tab" type="button" data-tab="tune">◫ <span>Tune</span></button>
+      <button class="mobile-tab" type="button" data-tab="record">● <span>Record</span></button>
+      <button class="mobile-tab" type="button" data-tab="call">☎ <span>Calls</span></button>
+    </nav>
+
+    <div class="workspace">
+      <section class="panel routing mobile-monitor" aria-labelledby="routing-title">
+        <div class="panel-heading"><div><span class="section-number">01 / INPUT & OUTPUT</span><h2 id="routing-title">Audio routing</h2></div><span id="connectionBadge" class="badge">OFFLINE</span></div>
+        <div class="device-grid">
+          <label class="field"><span>Microphone input</span><select id="inputDevice" aria-label="Microphone input"><option value="">Default microphone</option></select></label>
+          <label class="field"><span>Speaker output</span><select id="outputDevice" aria-label="Speaker output"><option value="">System default speaker</option></select></label>
+        </div>
+        <div class="speaker-assist"><div><strong>AI assist for speaker output</strong><span>Clean speech before it reaches the selected speaker or call output.</span></div><button id="speakerAiButton" class="button ai-toggle" type="button" aria-pressed="true">✦ AI on</button></div>
+        <div class="route-line"><span>INPUT</span><div class="route-track"><i></i></div><span>PROCESSING</span><div class="route-track"><i></i></div><span>OUTPUT</span></div>
+        <div class="transport">
+          <button id="startButton" class="button primary" type="button"><span aria-hidden="true">▶</span> Start live audio</button>
+          <button id="stopButton" class="button secondary" type="button" disabled>Stop</button>
+          <span id="liveStatus" class="transport-status" role="status">Ready when you are</span>
+        </div>
+        <p class="hint">Use headphones while monitoring to avoid speaker feedback. Connect Bluetooth devices in your system settings first.</p>
+      </section>
+
+      <section class="panel meter-panel mobile-monitor" aria-labelledby="meter-title">
+        <div class="panel-heading"><div><span class="section-number">02 / SIGNAL</span><h2 id="meter-title">Live levels</h2></div><span class="meter-unit">dBFS</span></div>
+        <div class="meter-row"><div class="meter-label"><span>INPUT</span><strong id="inputDb">−∞</strong></div><div class="meter-track"><div id="inputMeter" class="meter-fill input-fill"></div></div></div>
+        <div class="meter-row"><div class="meter-label"><span>OUTPUT</span><strong id="outputDb">−∞</strong></div><div class="meter-track"><div id="outputMeter" class="meter-fill output-fill"></div></div></div>
+        <div class="meter-scale"><span>−60</span><span>−45</span><span>−30</span><span>−15</span><span>0</span></div>
+        <div class="signal-note"><span class="signal-icon">↗</span><span>Adjust gain until speech is clear without hitting the red end of the meter.</span></div>
+      </section>
+
+      <section class="panel controls mobile-tune" aria-labelledby="controls-title">
+        <div class="panel-heading"><div><span class="section-number">03 / SOUND SHAPING</span><h2 id="controls-title">Fine-tune your voice</h2></div><button id="resetButton" class="text-button" type="button">Reset defaults</button></div>
+        <div class="ai-card"><div class="ai-card-icon" aria-hidden="true">✦</div><div class="ai-card-copy"><strong>Neural noise cancellation</strong><span id="modelStatus">Runs privately on this device</span></div><span class="ai-pill">ON DEVICE</span></div>
+        <div class="control-grid">
+          <div class="control-card model-card"><div class="control-top"><label for="model">AI model</label><span class="model-tag">NEW</span></div><select id="model" aria-label="AI noise cancellation model"><option value="gtcrn">GTCRN · Studio</option><option value="rnnoise">RNNoise · Efficient</option><option value="off">Off · Classic processing</option></select><p>Studio for stronger cleanup; Efficient for lower CPU use.</p></div>
+          <div class="control-card"><div class="control-top"><label for="aiMix">AI strength</label><output id="aiMixValue">85%</output></div><input id="aiMix" type="range" min="0" max="100" value="85"><p>Blend neural processing with the original sound.</p></div>
+          <div class="control-card"><div class="control-top"><label for="reduction">Noise reduction</label><output id="reductionValue">65%</output></div><input id="reduction" type="range" min="0" max="100" value="65"><p>Lower background sound between words.</p></div>
+          <div class="control-card"><div class="control-top"><label for="threshold">Noise threshold</label><output id="thresholdValue">−45 dB</output></div><input id="threshold" type="range" min="-70" max="-20" value="-45"><p>Raise it if room noise remains; lower it for quiet speech.</p></div>
+          <div class="control-card"><div class="control-top"><label for="gain">Amplifier</label><output id="gainValue">+0 dB</output></div><input id="gain" type="range" min="-12" max="24" value="0"><p>Boost or reduce the processed voice volume.</p></div>
+          <div class="control-card"><div class="control-top"><label for="tone">Voice clarity</label><output id="toneValue">50%</output></div><input id="tone" type="range" min="0" max="100" value="50"><p>Focus on speech frequencies and soften low rumble.</p></div>
+        </div>
+        <div class="options"><label class="checkbox"><input id="browserNoise" type="checkbox"><span>Browser noise suppression</span></label><label class="checkbox"><input id="echoCancel" type="checkbox" checked><span>Echo cancellation</span></label><label class="checkbox"><input id="autoGain" type="checkbox"><span>Automatic input gain</span></label></div>
+      </section>
+
+      <section class="panel recording mobile-record" aria-labelledby="record-title">
+        <div class="panel-heading"><div><span class="section-number">04 / CAPTURE</span><h2 id="record-title">Record cleaned audio</h2></div><span id="recordTime" class="record-time">00:00</span></div>
+        <p>Capture the processed voice exactly as it is sent to the output.</p>
+        <div class="record-actions"><button id="recordButton" class="button record-button" type="button" disabled><span class="record-dot"></span> Start recording</button><a id="downloadLink" class="button download-button hidden" download="clearvoice-recording.webm">Download recording ↓</a><button id="shareButton" class="button download-button hidden" type="button">Save or share recording ↗</button></div>
+        <audio id="recordingPreview" controls class="preview hidden" aria-label="Recorded audio preview"></audio>
+      </section>
+
+      <section class="panel call-routing mobile-call" aria-labelledby="call-title">
+        <div class="panel-heading"><div><span class="section-number">05 / LIVE CALLS</span><h2 id="call-title">Send clean voice to a call</h2></div><span class="call-label">DESKTOP</span></div>
+        <p class="call-intro">For Zoom, Teams, and other desktop meeting apps, route ClearVoice to a virtual audio device and choose that device as the meeting microphone.</p>
+        <div class="call-steps"><span><b>1</b> Connect your microphone</span><span><b>2</b> Choose a virtual output below</span><span><b>3</b> Select its matching input in your call app</span></div>
+        <label class="field call-device"><span>Virtual audio output for calls</span><select id="callOutputDevice" aria-label="Virtual audio output for calls"><option value="">Choose a virtual audio output</option></select></label>
+        <div class="call-actions"><button id="callModeButton" class="button secondary" type="button" aria-pressed="false">Enable call output</button><span id="callStatus" role="status">Call output is off</span></div>
+        <p id="callHelp" class="hint">Use a virtual audio driver on macOS or Windows. Keep your meeting app's speaker on your headphones; ClearVoice mutes local voice monitoring while call output is on. Mobile phone calls cannot use this route.</p>
+      </section>
+    </div>
+    <div class="mobile-transport"><div><span class="mobile-live-dot"></span><span id="mobileStatus">Ready to monitor</span></div><button id="mobileStartButton" class="mobile-power" type="button" aria-label="Start live audio">▶</button><button id="mobileStopButton" class="mobile-power hidden" type="button" aria-label="Stop live audio">■</button></div>
+    <footer>Allow microphone access when prompted. Output selection depends on your system and audio devices.</footer>
+  </main>
+  <audio id="monitor" autoplay playsinline></audio>
+  <audio id="callMonitor" autoplay playsinline></audio>
+</body>
+</html>
